@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partial/head') %>
+
+<body>
+  <%- include('partial/navbar') %>
+  <div class="container-fluid">
+    <h1 class="text-center">Edit Entry</h1>
+    <div class="">
+      <form action="/edit?id=<%= data.id %> " method="POST">
+        <input class="form-control w-100" type="text" name="nama" value="<%= data.nama %> " placeholder="Masukkan Nama">
+        <input class="form-control w-100 mt-2" type="text" name="hoby" value="<%= data.hoby %> " placeholder="Masukkan Hoby">
+        <div class="text-center mt-2">
+          <button class="btn btn-warning btn-lg">Edit</button>
+        </div>
+      </form>
+      <!-- 
+      <form>
+        <input class="form-control w-100" type="text" name="nama" value="<%= data.nama %> " placeholder="Masukkan Nama">
+        <input class="form-control w-100 mt-2" type="text" name="hoby" value="<%= data.hoby %> " placeholder="Masukkan Hoby">
+        <div class="text-center mt-2">
+          <button onclick="postData()" class="btn btn-warning btn-lg">Edit</button>
+        </div>
+      </form> -->
+    </div>
+  </div>
+
+
+
+</body>
+<script>
+  // cara kalau mau pakai method put
+  async function postData() {
+    const nama = document.querySelector("#nama").value
+    const hoby = document.querySelector("#hoby").value
+    const dataToSent = {
+      nama,
+      hoby
+    }
+    const response = await fetch('http://localhost:3000/edit?id=<%= data.id %>', {
+      method: 'PUT', // *GET, POST, PUT, DELETE, etc.
+      mode: 'cors', // no-cors, *cors, same-origin
+      cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+      credentials: 'same-origin', // include, *same-origin, omit
+      headers: {
+        'Content-Type': 'application/json'
+        // 'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      redirect: 'follow', // manual, *follow, error
+      referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+      body: JSON.stringify(dataToSent) // body data type must match "Content-Type" header
+    });
+    location.href = 'http://localhost:3000/' // parses JSON response into native JavaScript objects
+
+  }
+</script>
+
+</html>
