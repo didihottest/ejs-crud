@@ -51,7 +51,7 @@ app.get('/edit', isLoggedIn, (req, res) => {
   const dataParsed = JSON.parse(data)
 
   const dataToEdit = dataParsed.find((item) => {
-    return item.id = id
+    return item.id == id
   })
   res.render('edit.ejs', {
     pageTitle: "Edit",
@@ -68,7 +68,7 @@ app.post('/edit', (req, res) => {
   const dataParsed = JSON.parse(data)
 
   const dataToEditIndex = dataParsed.findIndex((item) => {
-    return item.id = id
+    return item.id == id
   })
   const dataToEdit = {
     id: id,
@@ -93,7 +93,7 @@ app.put('/edit', (req, res) => {
   const dataParsed = JSON.parse(data)
 
   const dataToEditIndex = dataParsed.findIndex((item) => {
-    return item.id = id
+    return item.id == id
   })
   const dataToEdit = {
     id: id,
